@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="twitchApp" ng-controller="twitchCtrl">
+<head>
+	<meta charset="UTF-8" />
+	<title>Twitch App</title>
+
+	<!-- JS Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
+	<!-- <script src="bower_components/angular/angular.min.js"></script> -->
+	<script src="app.js"></script>
+	<!-- <script src="bower_components/angular-skycons/angular-skycons.min.js"></script> -->
+
+
+	<!-- CSS files-->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body class="text-center info">
+<div class="container">
+  <div id="header">
+   <h1>{{appInfo.heading}}</h1>
+    <div>
+		<a class="btn-lg" 
+		ng-href="{{appInfo.subHeading2.githubprofile}}" 
+		target="blank" title="Yacub93"><i class="fa fa-github"></i></a>
+
+		<a class="btn-lg" 
+		ng-href="{{appInfo.subHeading2.linkedinprofile}}" 
+		target="blank" title="Yacub Ali"><i class="fa fa-linkedin"></i></a>
+	</div>
+      <h3 id="status">{{status}}</h3>
+    </a>
+  </div>
+  <div class="row">
+
+      <div class="col-md-4">
+        <h1>Logo:</h1>
+      </div>
+      <div class="col-md-4">
+        <h1>Display Name:</h1>
+      </div>
+      <div class="col-md-4">
+        <h1>Status:</h1>
+      </div>
+
+  </div>
+  <div id="folowerInfo">
+    
+  </div>
+</div>
+</div>	
+</body>
+</html>
