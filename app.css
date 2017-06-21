@@ -1,0 +1,56 @@
+html,body{
+	background-color: #8e44ad;
+}
+
+
+#searchTerm {
+    /*background-image: url('/css/searchicon.png'); /* Add a search icon to input */*/
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+
+table{
+	background-color: #ecf0f1;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.btn-primary{
+	margin:60px;
+	margin-left: 50px
+	margin-bottom: 100px;
+
+}
+a.all{
+	background-color: #34495e;
+	border-color: #34495e;
+}
+a.all:hover{
+	background-color: #2c3e50;
+	border-color: #2c3e50;
+	text-decoration: none;
+}
+a.online{
+	background-color: #2ecc71;
+	border-color: #2ecc71;
+
+}
+a.online:hover{
+	background-color: #27ae60;
+	border-color: #27ae60;
+	text-decoration: none;
+}
+a.offline{
+	background-color: #e74c3c;
+	border-color: #e74c3c;
+}
+a.offline:hover{
+	background-color: #c0392b;
+	border-color: #c0392b;
+	text-decoration: none;
+}
