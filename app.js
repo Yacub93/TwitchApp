@@ -4,8 +4,8 @@ classApp.controller("twitchCtrl", function($scope, $http) {
   var obj = $scope;
 
   obj.appInfo = {
-    heading: "Twitch.tv",
-    twitchLogo:'https://vignette4.wikia.nocookie.net/logopedia/images/2/26/Twitch_logo.svg/revision/latest?cb=20140727180649',
+    heading: "Twitch.tv Streamers",
+    twitchLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Twitch_logo.svg/2000px-Twitch_logo.svg.png',
 
     subHeading2: {
       githubprofile: "https://github.com/Yacub93",
@@ -26,7 +26,7 @@ classApp.controller("twitchCtrl", function($scope, $http) {
       }).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
-         // console.log(response.data.stream);
+         // console.log(response.data);
           if (response.data.stream === null) {
             //Offline
             obj.status === "OFFLINE"
@@ -40,6 +40,7 @@ classApp.controller("twitchCtrl", function($scope, $http) {
 
             $http({
               method: 'GET',
+              // url:'https://api.twitch.tv/kraken/streams/twitch?followed',
               url: 'https://api.twitch.tv/kraken/users/twitch/follows/channels/',
               headers:{
                 'CLIENT-ID':clientID
@@ -48,16 +49,12 @@ classApp.controller("twitchCtrl", function($scope, $http) {
                 // this callback will be called asynchronously
                 // when the response is available
                 // console.log(response2.data);
-            for (var i = 0; i < response2.data.follows.length; i++) {
-                  // console.log(response2.data.follows[i]);
-
+                 for (var i = 0; i < response2.data.follows.length; i++) {
                         obj.displayName = response2.data.follows[i].channel.display_name;
                         obj.logo = response2.data.follows[i].channel.logo;
                         obj.status = response2.data.follows[i].channel.status;
                         obj.channel = response2.data.follows[i].channel.url;
                         obj.streaming = response2.data.follows[i].channel.game;
-
-                        // console.log(obj.displayName);
 
               if(obj.logo == null){
                obj.logo = "http://soneltest.com/static/error_image.png";
@@ -72,10 +69,47 @@ classApp.controller("twitchCtrl", function($scope, $http) {
                            streaming:obj.streaming
                            });  
 
+                 }
+      
+      // filter channels
+      $scope.getStreamer = function () {          
+            for (var i = 0; i < response2.data.follows.length; i++) {
+            //       console.log(response2.data.follows[i]);
+
+                        obj.displayName2 = response2.data.follows[i].channel.display_name;
+                        obj.logo2 = response2.data.follows[i].channel.logo;
+                        obj.status2 = response2.data.follows[i].channel.status;
+                        obj.channel2 = response2.data.follows[i].channel.url;
+                        obj.streaming2 = response2.data.follows[i].channel.game;
+
+                     console.log(obj.displayName2);
+
+            var searchTerm = $scope.formData.searchTerm.replace(/[^A-Z0-9_]/ig, "");      
 
 
-            }//.Close for loop
+            if (obj.displayName2 === searchTerm) {
+                    console.log("searchTerm " + $scope.formData.searchTerm);
+                  
 
+              if(obj.logo2 == null){
+               obj.logo2 = "http://soneltest.com/static/error_image.png";
+                  }
+                        $scope.results = []; //empty array before populating
+                        // store results in array 
+                        $scope.results.push({
+                           displayName: obj.displayName2, 
+                           logo: obj.logo2,
+                           status: obj.status2,
+                           channel:obj.channel2,
+                           streaming:obj.streaming2
+                           });  
+
+           }   
+
+
+
+          }//.Close for loop
+        }//.Close getStreamer()
 
               }, function errorCallback(response2) {
                 // called asynchronously if an error occurs
@@ -91,9 +125,7 @@ classApp.controller("twitchCtrl", function($scope, $http) {
           // console.log(response);
         });
 
-      $scope.search = function (value) {
-        console.log("searchTerm " + value);
-      }
+
 
 }); //.Close controller         
     

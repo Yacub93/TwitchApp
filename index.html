@@ -5,24 +5,23 @@
 	<title>Twitch App</title>
 
 	<!-- JS Scripts -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
-	<!-- <script src="bower_components/angular/angular.min.js"></script> -->
+	<script 
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
 	<script src="app.js"></script>
-	<!-- <script src="bower_components/angular-skycons/angular-skycons.min.js"></script> -->
 
 
-	<!-- CSS files-->
+	<!-- CSS Links-->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="app.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
-<body>
+<body class="text-center">
 <div class="container">
   <div id="header">
    <h1>{{appInfo.heading}}</h1>
-   <img class="cirlce" ng-src="{{appInfo.twitchLogo}}">
+   <!-- <img class="logo" height="300px" ng-src="{{appInfo.twitchLogo}}"> -->
     <div>
 		<a class="btn-lg" 
 		ng-href="{{appInfo.subHeading2.githubprofile}}" 
@@ -40,27 +39,37 @@
       <div class="row" >
         <a href="#" class="btn-lg btn-primary all">All Channels</a>
 
-        <a href="#" class="btn-lg btn-primary online">Online</a>
+        <a href="#" class="btn-lg btn-primary online">Online Channels</a>
 
-        <a href="#" class="btn-lg btn-primary offline">Offline</a>
+        <a href="#" class="btn-lg btn-primary offline">Offline Channels</a>
       </div>
+
+<!-- 		 	 <div><input type="text" id="searchTerm" ng-model="formData.searchTerm" placeholder="Search...">
+  			 <button  class="btn btn-primary" ng-click="getStreamer()"><i class="fa fa-search"></i></button></div> -->
+
+    <div class="input-group add-on">
+      <input class="form-control" ng-model="formData.searchTerm" placeholder="Search..." type="text" autofocus="">
+      <div class="input-group-btn">
+        <button class="btn btn-default search" ng-click="getStreamer()"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
 
   <!-- </div> -->
   <div id="folowerInfo">
-<!--   <input type="text" id="searchTerm" ng-model="formData.searchTerm" placeholder="Search...">
-  <button id="search" class="btn btn-default" ng-click="search(formData.searchTerm)"><i class="fa fa-search"></i></button> -->
-    	<table class="table" ng-repeat="result in results">
-<!-- 		    <thead>
-		      <tr>
-		        <th></th>
-		        <th>Display Name</th>
-		        <th>Status</th>
+    	<table class="table" >
+		    <thead>
+		 	<tr>
+		 	 <th><img class="logo" height="100px" ng-src="{{appInfo.twitchLogo}}"></th>
+
+
+
 		      </tr>
-		    </thead> -->
-		    <tbody>
+		    </thead>
+		    <tbody ng-repeat="result in results">
 		      <tr>
-		        <td><img height="100px" ng-src="{{result.logo}}"></td>
 		        <td>
+		        	<img height="100px" ng-src="{{result.logo}}"></td>
+		        <td class="name">
 		        <a ng-href="{{result.channel}}" target='_blank'>{{result.displayName}}</a> </td>
 		        <td><p>{{result.status}}</p></td>
 		        <td>{{result.streaming}}</td>
