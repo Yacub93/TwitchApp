@@ -14,9 +14,12 @@ classApp.controller("twitchCtrl", function($scope, $http) {
   };
     var twitchURL = "https://api.twitch.tv/kraken/streams/twitch";
     var clientID = 'mxvcve7xx4xjlbbqigfq25emjf1h7p';
+    // var twitchStreamers = ["dreamhackcs", "skyzhar", "twitch", "faceittv", "comster404", "brunofin", "terakilobyte", "robotcaleb", "sheevergaming", "KyleThatKyle", "ogamingsc2", "jacksofamerica", "Pewdiepie"];
+
+
     $scope.results = [];
 
-       // Simple GET request example:
+  // Simple GET request example:
   $http({
         method: 'GET',
         url: twitchURL,
@@ -36,11 +39,11 @@ classApp.controller("twitchCtrl", function($scope, $http) {
             obj.status === "LIVE"
             
           }
-          
+  
+
 
             $http({
               method: 'GET',
-              // url:'https://api.twitch.tv/kraken/streams/twitch?followed',
               url: 'https://api.twitch.tv/kraken/users/twitch/follows/channels/',
               headers:{
                 'CLIENT-ID':clientID
@@ -48,13 +51,15 @@ classApp.controller("twitchCtrl", function($scope, $http) {
             }).then(function successCallback(response2) {
                 // this callback will be called asynchronously
                 // when the response is available
-                // console.log(response2.data);
+                console.log(response2);
+
                  for (var i = 0; i < response2.data.follows.length; i++) {
                         obj.displayName = response2.data.follows[i].channel.display_name;
                         obj.logo = response2.data.follows[i].channel.logo;
                         obj.status = response2.data.follows[i].channel.status;
                         obj.channel = response2.data.follows[i].channel.url;
                         obj.streaming = response2.data.follows[i].channel.game;
+                
 
               if(obj.logo == null){
                obj.logo = "http://soneltest.com/static/error_image.png";
@@ -70,6 +75,9 @@ classApp.controller("twitchCtrl", function($scope, $http) {
                            });  
 
                  }
+
+
+
       
       // filter channels
       $scope.getStreamer = function () {          
